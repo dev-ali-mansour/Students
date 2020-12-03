@@ -11,7 +11,7 @@ import dev.alimansour.students.R;
 import dev.alimansour.students.data.DataSource;
 import dev.alimansour.students.model.Student;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
     private EditText firstNameEditText, lastNameEditText, levelEditText, degreeEditText;
     private Button saveButton, listButton;
     private boolean isEdit;
@@ -35,28 +35,38 @@ public class MainActivity extends AppCompatActivity  {
         loadData();
 
         saveButton.setOnClickListener(v -> {
-            Student student = new Student(
-                    firstNameEditText.getText().toString(),
-                    lastNameEditText.getText().toString(),
-                    Byte.parseByte(levelEditText.getText().toString()),
-                    Double.parseDouble(degreeEditText.getText().toString())
-            );
-            if (isEdit) {
-                DataSource.updateStudent(id, student);
+            if (firstNameEditText.getText().toString().isEmpty()) {
+                firstNameEditText.setError("Please enter first name!");
+            } else if (lastNameEditText.getText().toString().isEmpty()) {
+                lastNameEditText.setError("Please enter last name!");
+            } else if (levelEditText.getText().toString().isEmpty()) {
+                levelEditText.setError("Please enter level!");
+            } else if (degreeEditText.getText().toString().isEmpty()) {
+                degreeEditText.setError("Please enter degree!");
             } else {
-                DataSource.addStudent(student);
+                Student student = new Student(
+                        firstNameEditText.getText().toString(),
+                        lastNameEditText.getText().toString(),
+                        Byte.parseByte(levelEditText.getText().toString()),
+                        Double.parseDouble(degreeEditText.getText().toString())
+                );
+                if (isEdit) {
+                    DataSource.updateStudent(id, student);
+                } else {
+                    DataSource.addStudent(student);
+                }
+
+                isEdit = false;
+                saveButton.setText("Save");
+
+                Toast.makeText(this, "Student data was saved successfully", Toast.LENGTH_LONG).show();
+
+                // Empty screen inputs
+                firstNameEditText.setText("");
+                lastNameEditText.setText("");
+                levelEditText.setText("");
+                degreeEditText.setText("");
             }
-
-            isEdit = false;
-            saveButton.setText("Save");
-
-            Toast.makeText(this, "Student data was saved successfully", Toast.LENGTH_LONG).show();
-
-            // Empty screen inputs
-            firstNameEditText.setText("");
-            lastNameEditText.setText("");
-            levelEditText.setText("");
-            degreeEditText.setText("");
         });
 
         listButton.setOnClickListener(v -> {
