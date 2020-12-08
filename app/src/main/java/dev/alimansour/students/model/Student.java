@@ -1,5 +1,8 @@
 package dev.alimansour.students.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * Students Android Application developed by: Ali Mansour
  * Copyright © 2020 Ali Mansour. All Rights Reserved.
@@ -7,7 +10,9 @@ package dev.alimansour.students.model;
  * ----------------- Students IS FREE SOFTWARE ------------------
  * https://www.alimansour.dev   |   dev.ali.mansour@gmail.com
  */
-public class Student {
+@Entity(tableName = "students")
+public class Student{
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String firstName;
     private String lastName;
@@ -19,11 +24,6 @@ public class Student {
         this.lastName = lastName;
         this.level = level;
         this.degree = degree;
-    }
-
-    public Student(int id, String firstName, String lastName, byte level, double degree) {
-        this(firstName, lastName, level, degree);
-        this.id = id;
     }
 
     public int getId() {

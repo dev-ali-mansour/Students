@@ -3,6 +3,7 @@ package dev.alimansour.students.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import dev.alimansour.students.R;
 import dev.alimansour.students.model.Student;
-import dev.alimansour.students.ui.OnCLickListener;
+import dev.alimansour.students.ui.activity.OnCLickListener;
 
 /**
  * Students Android Application developed by: Ali Mansour
@@ -57,6 +58,7 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
     static class StudentViewHolder extends RecyclerView.ViewHolder {
         private TextView fullNameTextView, degreeTextView, levelTextView;
         private ImageView resultImageView;
+        private ImageButton deleteButton;
 
         public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,6 +67,7 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
             degreeTextView = itemView.findViewById(R.id.degreeTextView);
             levelTextView = itemView.findViewById(R.id.levelTextView);
             resultImageView = itemView.findViewById(R.id.resultImageView);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
         }
 
         void bind(Student student, OnCLickListener listener) {
@@ -81,6 +84,9 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
 
             itemView.setOnClickListener(v -> {
                 listener.onClick(student.getId());
+            });
+            deleteButton.setOnClickListener(v -> {
+                listener.onDelete(student);
             });
         }
     }

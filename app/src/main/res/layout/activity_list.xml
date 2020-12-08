@@ -5,18 +5,50 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.ListActivity">
+    tools:context=".ui.activity.ListActivity">
 
     <TextView
-        android:id="@+id/fullNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Users List"
+        android:text="Students List"
         android:textAlignment="center"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="24sp"
         android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/levelFilterEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="8"
+            android:hint="Type Level to filter"
+            android:inputType="number" />
+
+        <ImageButton
+            android:id="@+id/filterButton"
+            android:layout_width="25dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_search" />
+        <ImageButton
+            android:id="@+id/viewAllButton"
+            android:layout_width="25dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:layout_marginStart="2dp"
+            android:src="@drawable/ic_baseline_list_24"
+            android:background="@android:color/transparent" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/studentsRecyclerView"

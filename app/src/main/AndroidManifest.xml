@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Students">
-        <activity android:name=".ui.ListActivity"></activity>
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.activity.WebViewActivity"></activity>
+        <activity android:name=".ui.activity.ListActivity" />
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,5 +19,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

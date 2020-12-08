@@ -3,8 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:scaleType="fitXY"
+        tools:src="@drawable/ic_launcher_background"/>
 
     <EditText
         android:id="@+id/firstNameEditText"

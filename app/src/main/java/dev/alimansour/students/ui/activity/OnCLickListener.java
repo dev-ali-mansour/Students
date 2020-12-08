@@ -1,4 +1,6 @@
-package dev.alimansour.students.ui;
+package dev.alimansour.students.ui.activity;
+
+import dev.alimansour.students.model.Student;
 
 /**
  * Students Android Application developed by: Ali Mansour
@@ -10,4 +12,6 @@ package dev.alimansour.students.ui;
 public interface OnCLickListener {
 
     public void onClick(int Id);
+
+    public void onDelete(Student student);
 }
