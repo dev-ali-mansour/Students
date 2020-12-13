@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <item
+            android:id="@+id/action_settings"
+            app:showAsAction="always"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="Settings" />
+        <item
+            android:id="@+id/action_about"
+            app:showAsAction="ifRoom"
+            android:icon="@drawable/ic_baseline_info_24"
+            android:title="About Us" />
+        <item
+            android:id="@+id/action_contact"
+            app:showAsAction="ifRoom"
+            android:icon="@drawable/ic_baseline_email_24"
+            android:title="Contact Us" />
+    <item
+            android:id="@+id/action_contact2"
+            app:showAsAction="ifRoom"
+            android:icon="@drawable/ic_baseline_email_24"
+            android:title="Contact Us" />
+    <item
+            android:id="@+id/action_contact3"
+            app:showAsAction="ifRoom"
+            android:icon="@drawable/ic_baseline_email_24"
+            android:title="Contact Us" />
+    <item
+            android:id="@+id/action_contact4"
+            app:showAsAction="ifRoom"
+            android:icon="@drawable/ic_baseline_email_24"
+            android:title="Contact Us" />
+
+
+
+</menu>

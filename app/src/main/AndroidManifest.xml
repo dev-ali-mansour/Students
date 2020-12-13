@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Students">
-        <activity android:name=".ui.activity.WebViewActivity"></activity>
+        <activity android:name=".ui.activity.AuthenticationActivity"></activity>
+        <activity android:name=".CourseReservation" />
+        <activity android:name=".ui.activity.WebViewActivity" />
         <activity android:name=".ui.activity.ListActivity" />
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>

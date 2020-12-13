@@ -1,7 +1,12 @@
 package dev.alimansour.students.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -9,8 +14,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.lifecycle.ViewModelProvider;
+import dev.alimansour.students.CourseReservation;
 import dev.alimansour.students.R;
 import dev.alimansour.students.model.Student;
 import dev.alimansour.students.ui.viewmodel.StudentsViewModel;
@@ -19,7 +27,7 @@ import dev.alimansour.students.ui.viewmodel.StudentsViewModelFactory;
 public class MainActivity extends AppCompatActivity {
     private ImageView logoImageView;
     private EditText firstNameEditText, lastNameEditText, levelEditText, degreeEditText;
-    private Button saveButton, listButton;
+    private Button saveButton, listButton, reservationButton, fragmentsButton;
     private boolean isEdit;
     private Student currentStudent;
     private StudentsViewModel studentsViewModel;
@@ -36,15 +44,69 @@ public class MainActivity extends AppCompatActivity {
         loadData();
 
         logoImageView.setOnClickListener(v -> {
-            Intent intent = new Intent(this, WebViewActivity.class);
+            /*Intent intent = new Intent(this, WebViewActivity.class);
             intent.putExtra("url", "https://www.yatlearning.com/Front/English/Global/Home.aspx");
-            startActivity(intent);
+            startActivity(intent);*/
+
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+            CustomTabsIntent customTabsIntent = builder.build();
+            customTabsIntent.launchUrl(this, Uri.parse("https://www.yatlearning.com/Front/English/Global/Home.aspx"));
         });
+
+        registerForContextMenu(logoImageView);
 
         saveButton.setOnClickListener(v -> saveStudent());
 
         listButton.setOnClickListener(v ->
                 startActivity(new Intent(this, ListActivity.class)));
+
+        reservationButton.setOnClickListener(v ->
+                startActivity(new Intent(this, CourseReservation.class)));
+
+        fragmentsButton.setOnClickListener(v ->
+                startActivity(new Intent(this, AuthenticationActivity.class)));
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        getMenuInflater().inflate(R.menu.context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_copy:
+                Toast.makeText(this, "You select to copy", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.action_paste:
+                Toast.makeText(this, "You select to paste", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Toast.makeText(this, "Application settings", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.action_about:
+                Toast.makeText(this, "About Us", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.action_contact:
+                Toast.makeText(this, "Contact Us", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void initVariables() {
@@ -55,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
         degreeEditText = findViewById(R.id.degreeEditText);
         saveButton = findViewById(R.id.saveButton);
         listButton = findViewById(R.id.listButton);
+        reservationButton = findViewById(R.id.reservationButton);
+        fragmentsButton = findViewById(R.id.fragmentsButton);
 
         studentsViewModel = new ViewModelProvider(this,
                 new StudentsViewModelFactory(getApplication()))
